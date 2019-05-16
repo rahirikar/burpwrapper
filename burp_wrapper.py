@@ -64,6 +64,7 @@ def add_burp_scope():
 
 
 def checkScanStatus():
+    global scanComplete75
     r = requests.get('http://localhost:8090/burp/scanner/status',
                      headers={'accept': '*/*'})
 
@@ -87,6 +88,7 @@ def checkScanStatus():
 
 
 def getResults():
+    global scanComplete
     p = {"urlPrefix": scope,
          "reportType": "HTML"}
     u = urllib.parse.urlencode(p)
