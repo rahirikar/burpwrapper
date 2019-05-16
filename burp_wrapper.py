@@ -10,7 +10,7 @@ import urllib
 # Inputs to this script
 # scope - Scope for burp scan. 
 
-application_baseurl = "https://localhost:3100"
+application_baseurl = "http://localhost:3100"
 scope = application_baseurl
 
 swagger_baseUrl = "http://localhost:8090"
