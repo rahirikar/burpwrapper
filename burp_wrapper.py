@@ -12,7 +12,9 @@ import urllib
 
 application_baseurl = "http://localhost:3100"
 scope = application_baseurl
-
+scanComplete = False
+scanComplete50 = False
+scanComplete75 = False
 swagger_baseUrl = "http://localhost:8090"
 
 '''
@@ -76,6 +78,10 @@ def checkScanStatus():
             print("Scan Complete.. ")
             return True
         else:
+            if scanComplete75 == False:
+                if data["scanPercentage"] >= 75:
+                    scanComplete75 = True
+                    getResults()
             print("Will check back in 5 seconds.. ")
             return False
 
@@ -99,7 +105,11 @@ def getResults():
         return
     else:
         data = r.text
-        filename = "BurpApplicationScanReport.html" 
+        filename_append = "_75"
+        if scanComplete == True:
+            filename_append = "_final"
+
+        filename = "BurpApplicationScanReport" + filename_append + ".html" 
         f = open(filename, "w")
         f.write(data)
         f.close()
@@ -149,7 +159,7 @@ scheduleScan()
 # wait until scan 100% finished
 time.sleep(10)
 
-scanComplete = False
+
 while scanComplete == False:
     time.sleep(5)
     if checkScanStatus():
