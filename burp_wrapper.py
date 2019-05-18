@@ -107,11 +107,7 @@ def getResults():
         return
     else:
         data = r.text
-        filename_append = "_75"
-        if scanComplete == True:
-            filename_append = "_final"
-
-        filename = "BurpApplicationScanReport" + filename_append + ".html" 
+        filename = "BurpApplicationScanReport.html" 
         f = open(filename, "w")
         f.write(data)
         f.close()
