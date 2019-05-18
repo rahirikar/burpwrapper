@@ -155,20 +155,21 @@ def scheduleScan():
 
 
 healthCheckBurp()
-add_burp_scope()
-scheduleScan()
+#add_burp_scope()
+#scheduleScan()
 
 # wait until scan 100% finished
-time.sleep(10)
+print("Waiting for scanning queue update")
+time.sleep(30)
 
 
 while scanComplete == False:
-    time.sleep(5)
     if checkScanStatus():
         #print("Scan complete.")
         scanComplete = True
     else:
-        scanComplete = False
+        time.sleep(5)
+
 
 if(scanComplete == True):
     getResults()
