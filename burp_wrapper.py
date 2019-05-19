@@ -157,6 +157,8 @@ healthCheckBurp()
 # wait until scan 100% finished
 print("Waiting for scanning queue update")
 time.sleep(30)
+print("Will check the scan status in a minute")
+time.sleep(30)
 
 
 while scanComplete == False:
